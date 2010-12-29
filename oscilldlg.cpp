@@ -1155,7 +1155,7 @@ void COscillDlg::OnbtnMSCommSend()
 	{
 		sendArr.SetAt( i, m_szMSCommSend.GetAt( i ) );
 	}
-	m_mscom.SetOutput( COleVariant(sendArr) );
+//	m_mscom.SetOutput( COleVariant(sendArr) );
 }
 
 BEGIN_EVENTSINK_MAP(COscillDlg, CDialog)
@@ -1183,11 +1183,13 @@ void COscillDlg::OnCommMscomm1()
 // 	int len;
 // 	char szRxData[1024];
 // 	CString tmp;
+/*
 	switch ( m_mscom.GetCommEvent() )
 	{
 	case 2:
 		{
 			g_eventCommRecv.SetEvent();
+*/
 /*
 			variant_inp = m_mscom.GetInput();
 			
@@ -1257,6 +1259,7 @@ void COscillDlg::OnCommMscomm1()
 			/************************************************************************/
 //  			m_szMSCommRecv += szRxData;
 //  			UpdateData( false );
+/*
 			break;
 		}
 	default:
@@ -1264,6 +1267,8 @@ void COscillDlg::OnCommMscomm1()
 			break;
 		}
 	}
+*/
+
 
 // 	finish = clock();
 // 	duration = (double)(finish - start);
@@ -1273,6 +1278,7 @@ void COscillDlg::OnCommMscomm1()
 void COscillDlg::OnBtnComOpen() 
 {
 	// TODO: Add your control notification handler code here
+/*
 	if( !m_mscom.GetPortOpen() )
 	{
 		m_mscom.SetPortOpen( TRUE );
@@ -1284,7 +1290,8 @@ void COscillDlg::OnBtnComOpen()
 		m_mscom.SetPortOpen( FALSE );
 		m_ctrlBtnComOpen.SetWindowText( "Open" );
 		TRACE( "COM Close!\n" );
-	}
+	}*/
+
 }
 
 UINT RecvThreadFunc( LPVOID lpParam )

@@ -1,9 +1,39 @@
-﻿生成启动时间为 2010/11/24 23:54:10。
-     1>项目“E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes\Oscilloscopes_11_01_0\Oscill.vcxproj”在节点 2 上(clean 个目标)。
-     1>_PrepareForClean:
-         正在删除文件“.\Debug\Oscill.lastbuildstate”。
-     1>已完成生成项目“E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes\Oscilloscopes_11_01_0\Oscill.vcxproj”(clean 个目标)的操作。
+﻿生成启动时间为 2010/11/28 21:33:34。
+     1>项目“E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\Oscill.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“.\Debug\Oscill.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         所有输出均为最新。
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt ComSetting.cpp
+         ComSetting.cpp
+       ResourceCompile:
+         所有输出均为最新。
+       ManifestResourceCompile:
+         所有输出均为最新。
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\Oscill.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:".\Debug\Oscill.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\Debug\Oscill.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\Oscill.lib" /MACHINE:X86 .\Debug\Oscill.res
+         .\Debug\Oscill.exe.embed.manifest.res
+         .\Debug\ComSetting.obj
+         .\Debug\mscomm.obj
+         .\Debug\OpenGLFunc.obj
+         .\Debug\Oscill.obj
+         .\Debug\OscillDlg.obj
+         .\Debug\Queue.obj
+         .\Debug\SerialPort.obj
+         .\Debug\StdAfx.obj
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:".\Debug\Oscill.exe.embed.manifest" /manifest XPStyle.manifest .\Debug\Oscill.exe.intermediate.manifest "C:\Program Files\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         所有输出均为最新。
+       LinkEmbedManifest:
+         所有输出均为最新。
+         Oscill.vcxproj -> E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\.\Debug\Oscill.exe
+       BscMake:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\Oscill.bsc" .\Debug\ComSetting.sbr .\Debug\mscomm.sbr .\Debug\OpenGLFunc.sbr .\Debug\Oscill.sbr .\Debug\OscillDlg.sbr .\Debug\Queue.sbr .\Debug\SerialPort.sbr .\Debug\StdAfx.sbr
+       FinalizeBuildStatus:
+         正在删除文件“.\Debug\Oscill.unsuccessfulbuild”。
+         正在对“.\Debug\Oscill.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\Oscill.vcxproj”(build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.70
+已用时间 00:00:12.09

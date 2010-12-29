@@ -204,8 +204,10 @@ void CComSetting::OnbtnApply()
 		DWORD dwErrors;                      
 		port.ClearError(dwErrors);
 
+/*
 		port.SetBreak();
 		port.ClearBreak();
+*/
 
 		COMSTAT stat;
 		port.GetStatus(stat);
@@ -236,10 +238,14 @@ void CComSetting::OnbtnApply()
 
 		//port.WaitEvent(dwMask);
 
+		//使用常量PURGE_TXABORT调用Purge,终止所有写操作,并立即返回,无论写操作有没有完成
 		port.TerminateOutstandingWrites();
 
+/*
+		//最高的优先权发送一个字符
 		port.TransmitChar('p');
-
+*/
+		//发送和接受超时配置为0
 		port.Set0Timeout();
 
 		char sRxBuf[10];
@@ -271,7 +277,7 @@ void CComSetting::OnbtnApply()
 
 		port.Close();
 
-
+/*
 		//Try out the overlapped functions
 		CSerialPort port2;
 		port2.Open(1, 9600, CSerialPort::NoParity, 8, CSerialPort::OneStopBit, CSerialPort::XonXoffFlowControl, TRUE);
@@ -321,7 +327,7 @@ void CComSetting::OnbtnApply()
 		}
 
 		port2.SetMask(EV_TXEMPTY); 
-
+*/
 		/* for testing on NT only
 		port2.WriteEx(sBuf, static_cast<DWORD>(strlen(sBuf)));
 		SleepEx(INFINITE, TRUE);
