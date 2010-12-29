@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ComSetting.cpp" />
+    <ClCompile Include="EnumSerialPort.cpp" />
     <ClCompile Include="mscomm.cpp" />
     <ClCompile Include="OpenGLFunc.cpp" />
     <ClCompile Include="Oscill.cpp" />
@@ -146,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="ComSetting.h" />
     <ClInclude Include="Const.h" />
+    <ClInclude Include="EnumSerialPort.h" />
     <ClInclude Include="mscomm.h" />
     <ClInclude Include="OpenGLFunc.h" />
     <ClInclude Include="Oscill.h" />

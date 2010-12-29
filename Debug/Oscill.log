@@ -1,11 +1,19 @@
-﻿生成启动时间为 2010/11/28 21:33:34。
+﻿生成启动时间为 2010/12/30 1:46:40。
      1>项目“E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\Oscill.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         正在创建“.\Debug\Oscill.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+         正在对“.\Debug\Oscill.unsuccessfulbuild”执行 Touch 任务。
        ClCompile:
          所有输出均为最新。
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt ComSetting.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt ComSetting.cpp EnumSerialPort.cpp Oscill.cpp OscillDlg.cpp
+         OscillDlg.cpp
+         正在生成代码...
+         正在编译...
+         Oscill.cpp
+     1>e:\my documents\visual studio 2010\projects\oscilloscopes_svn\oscill.cpp(55): warning C4996: 'CWinApp::Enable3dControls': CWinApp::Enable3dControls is no longer needed. You should remove this call.
+                 c:\program files\microsoft visual studio 10.0\vc\atlmfc\include\afxwin.h(5344) : 参见“CWinApp::Enable3dControls”的声明
+         EnumSerialPort.cpp
          ComSetting.cpp
+         正在生成代码...
        ResourceCompile:
          所有输出均为最新。
        ManifestResourceCompile:
@@ -14,6 +22,7 @@
          C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\Oscill.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:".\Debug\Oscill.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\Debug\Oscill.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\Oscill.lib" /MACHINE:X86 .\Debug\Oscill.res
          .\Debug\Oscill.exe.embed.manifest.res
          .\Debug\ComSetting.obj
+         .\Debug\EnumSerialPort.obj
          .\Debug\mscomm.obj
          .\Debug\OpenGLFunc.obj
          .\Debug\Oscill.obj
@@ -28,7 +37,7 @@
          所有输出均为最新。
          Oscill.vcxproj -> E:\My Documents\Visual Studio 2010\Projects\Oscilloscopes_SVN\.\Debug\Oscill.exe
        BscMake:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\Oscill.bsc" .\Debug\ComSetting.sbr .\Debug\mscomm.sbr .\Debug\OpenGLFunc.sbr .\Debug\Oscill.sbr .\Debug\OscillDlg.sbr .\Debug\Queue.sbr .\Debug\SerialPort.sbr .\Debug\StdAfx.sbr
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\Oscill.bsc" .\Debug\ComSetting.sbr .\Debug\EnumSerialPort.sbr .\Debug\mscomm.sbr .\Debug\OpenGLFunc.sbr .\Debug\Oscill.sbr .\Debug\OscillDlg.sbr .\Debug\Queue.sbr .\Debug\SerialPort.sbr .\Debug\StdAfx.sbr
        FinalizeBuildStatus:
          正在删除文件“.\Debug\Oscill.unsuccessfulbuild”。
          正在对“.\Debug\Oscill.lastbuildstate”执行 Touch 任务。
@@ -36,4 +45,4 @@
 
 生成成功。
 
-已用时间 00:00:12.09
+已用时间 00:00:16.66

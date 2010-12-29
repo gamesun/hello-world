@@ -122,6 +122,7 @@ BEGIN_MESSAGE_MAP(COscillDlg, CDialog)
 	ON_BN_CLICKED(IDC_BTNCOMOPEN, OnBtnComOpen)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &COscillDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_btnReverse, &COscillDlg::OnBnClickedbtnreverse)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1066,14 +1067,17 @@ void COscillDlg::OnBnClickedOk()
 	CDialog::OnOK();
 }
 
-// void COscillDlg::OnOK() 
-// {
-// 	// TODO: Add extra validation here
-// 	OnClose();
-// 
-// 	CDialog::OnOK();
-// 	
-// }
+void COscillDlg::OnBnClickedbtnreverse()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int ComCnt = EnumSerialPort();
+	if ( -1 != ComCnt )
+	{
+		TRACE( "ComCnt:%d\n", ComCnt );
+	}
+	
+
+}
 
 void COscillDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
 {
@@ -1401,4 +1405,3 @@ UINT RecvThreadFunc( LPVOID lpParam )
 //	TRACE( "Leave RecvThreadFunc()\n" );
 	return 0;
 }
-

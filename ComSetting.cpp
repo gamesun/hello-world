@@ -125,17 +125,6 @@ void CComSetting::OnBnClickedOk()
 	CDialog::OnOK();
 }
 
-// void CComSetting::OnOK() 
-// {
-// 	// TODO: Add extra validation here
-// 
-// //	TRACE( "GetPortOpen:%x\n", g_pMainThis->m_mscom.GetPortOpen() );
-// 	OnbtnApply();
-// 
-// 	CDialog::OnOK();
-// }
-
-
 void CComSetting::OnbtnApply() 
 {
 	// TODO: Add your control notification handler code here
@@ -335,14 +324,14 @@ void CComSetting::OnbtnApply()
 		SleepEx(INFINITE, TRUE);
 		*/
 
-  }
-  catch (CSerialException* pEx)
-  {
-    TRACE(_T("Handle Exception, Message:%s\n"), pEx->GetErrorMessage().operator LPCTSTR());
-    pEx->Delete();
-  }
+	}
+	catch (CSerialException* pEx)
+	{
+		TRACE(_T("Handle Exception, Message:%s\n"), pEx->GetErrorMessage().operator LPCTSTR());
+		pEx->Delete();
+	}
 
-  delete [] pBuf;
+	delete [] pBuf;
 }
 
 void CComSetting::OnCancel() 

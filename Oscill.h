@@ -17,7 +17,7 @@
 #include "math.h"
 
 #include "OpenGLFunc.h"
-
+#include "EnumSerialPort.h"
 
 #include <stdlib.h>
 #include <time.h>
