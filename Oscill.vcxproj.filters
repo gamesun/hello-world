@@ -13,6 +13,18 @@
       <UniqueIdentifier>{eb82e527-26d3-4457-bcbf-43f1241328d4}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
+    <Filter Include="Source Files\Thread">
+      <UniqueIdentifier>{d186c38b-dab5-4848-9b4a-6eb02ca9155c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialog">
+      <UniqueIdentifier>{926b6006-54d0-4b3f-9d2d-8a1280098004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Func">
+      <UniqueIdentifier>{12577c88-e59d-4d5f-957f-22bc6df1462f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SerialPort">
+      <UniqueIdentifier>{15e7088c-46c7-4b39-9dac-34a9baf17d1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComSetting.cpp">

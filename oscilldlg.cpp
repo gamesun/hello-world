@@ -1070,12 +1070,19 @@ void COscillDlg::OnBnClickedOk()
 void COscillDlg::OnBnClickedbtnreverse()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	int ComCnt = EnumSerialPort();
-	if ( -1 != ComCnt )
+	int i;
+	SERIALPORTINFO *psSerialPortInfo = EnumSerialPort();
+	
+	if ( NULL != psSerialPortInfo )
 	{
-		TRACE( "ComCnt:%d\n", ComCnt );
+		for ( i = 1; i <= psSerialPortInfo->nNum ; i++ )
+		{
+			TRACE( "No.%d,%s\n", i, psSerialPortInfo->pszList[i] );
+		}
+		
 	}
 	
+	delete psSerialPortInfo;
 
 }
 

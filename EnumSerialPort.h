@@ -18,8 +18,15 @@
 /*------------------------------------------------------------> Inclueds <--*/
 #include "StdAfx.h"
 
+/*----------------------------------------------------------> Structures <--*/
+typedef struct tagSERIALPORTINFO
+{
+	CString	pszList[256];
+	int		nNum;
+}SERIALPORTINFO;
+
 /*----------------------------------------------------------> Prototypes <--*/
-int EnumSerialPort( void );
+SERIALPORTINFO * EnumSerialPort( void );
 
 /*--------------------------------------------------> External Functions <--*/
 
@@ -30,11 +37,7 @@ int EnumSerialPort( void );
 /*-----------------------------------------------------> Local Variables <--*/
 
 /*-----------------------------------------------------------> Constants <--*/
-typedef struct tagSERIALPORTINFO
-{
-	CString	szSerialPortList[];
-	int		nNum;
-}SERIALPORTINFO;
+
 
 
 #endif /* __ENUMSERIALPORT_H__ */

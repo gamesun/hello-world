@@ -14,6 +14,7 @@
 
 /*------------------------------------------------------------> Inclueds <--*/
 #include "EnumSerialPort.h"
+#include <string.h>
 
 /*----------------------------------------------------------> Prototypes <--*/
 
@@ -31,7 +32,7 @@
 // Name: EnumSerialPort
 // Desc: 
 //-----------------------------------------------------------------------------
-CString EnumSerialPort( void )
+ SERIALPORTINFO * EnumSerialPort( void )
 {
 	CString	strSerialList[256];  //临时定义256个字符串组，因为系统最多也就256个
 	HKEY	hKey;
@@ -40,10 +41,10 @@ CString EnumSerialPort( void )
 	
 	if ( ret0 != ERROR_SUCCESS )
 	{
-		return ( -1 );
+		return ( NULL );
 	}
 	
-	int i = 0;
+	int i;
 	CHAR Name[25];
 	UCHAR szPortName[25];
 	LONG Status;
@@ -53,7 +54,11 @@ CString EnumSerialPort( void )
 	DWORD Type;
 	dwName = sizeof( Name );
 	dwSizeofPortName = sizeof( szPortName );
-	
+	SERIALPORTINFO	*psSerialPortInfo;
+	psSerialPortInfo = new SERIALPORTINFO;
+//	memset( psSerialPortInfo, 0, sizeof( SERIALPORTINFO ) );
+	psSerialPortInfo->nNum = 0;
+	i = 1;
 	do
 	{
 		Status = RegEnumValue(hKey, dwIndex++, Name, &dwName, NULL, &Type,
@@ -61,12 +66,14 @@ CString EnumSerialPort( void )
 
 		if((Status == ERROR_SUCCESS)||(Status == ERROR_MORE_DATA))
 		{
-			strSerialList[i] = CString(szPortName);
-			i++;
+			psSerialPortInfo->pszList[i] = CString( szPortName );
+			psSerialPortInfo->nNum++;
+// 			strSerialList[i] = CString(szPortName);
+ 			i++;
 		}
 	} while((Status == ERROR_SUCCESS)||(Status == ERROR_MORE_DATA));
 	
 	RegCloseKey( hKey );
 
-	return ( i );
+	return ( psSerialPortInfo );
 }
