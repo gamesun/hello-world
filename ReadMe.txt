@@ -1,46 +1,46 @@
 ========================================================================
-       MICROSOFT FOUNDATION CLASS LIBRARY : MFC_test1
+       MICROSOFT FOUNDATION CLASS LIBRARY : Oscill
 ========================================================================
 
 
-AppWizard has created this MFC_test1 application for you.  This application
+AppWizard has created this Oscill application for you.  This application
 not only demonstrates the basics of using the Microsoft Foundation classes
 but is also a starting point for writing your application.
 
 This file contains a summary of what you will find in each of the files that
-make up your MFC_test1 application.
+make up your Oscill application.
 
-MFC_test1.dsp
+Oscill.dsp
     This file (the project file) contains information at the project level and
     is used to build a single project or subproject. Other users can share the
     project (.dsp) file, but they should export the makefiles locally.
 
-MFC_test1.h
+Oscill.h
     This is the main header file for the application.  It includes other
     project specific headers (including Resource.h) and declares the
-    CMFC_test1App application class.
+    COscillApp application class.
 
-MFC_test1.cpp
+Oscill.cpp
     This is the main application source file that contains the application
-    class CMFC_test1App.
+    class COscillApp.
 
-MFC_test1.rc
+Oscill.rc
     This is a listing of all of the Microsoft Windows resources that the
     program uses.  It includes the icons, bitmaps, and cursors that are stored
     in the RES subdirectory.  This file can be directly edited in Microsoft
 	Visual C++.
 
-MFC_test1.clw
+Oscill.clw
     This file contains information used by ClassWizard to edit existing
     classes or add new classes.  ClassWizard also uses this file to store
     information needed to create and edit message maps and dialog data
     maps and to create prototype member functions.
 
-res\MFC_test1.ico
+res\Oscill.ico
     This is an icon file, which is used as the application's icon.  This
-    icon is included by the main resource file MFC_test1.rc.
+    icon is included by the main resource file Oscill.rc.
 
-res\MFC_test1.rc2
+res\Oscill.rc2
     This file contains resources that are not edited by Microsoft 
 	Visual C++.  You should place all resources not editable by
 	the resource editor in this file.
@@ -52,10 +52,10 @@ res\MFC_test1.rc2
 
 AppWizard creates one dialog class:
 
-MFC_test1Dlg.h, MFC_test1Dlg.cpp - the dialog
-    These files contain your CMFC_test1Dlg class.  This class defines
+OscillDlg.h, OscillDlg.cpp - the dialog
+    These files contain your COscillDlg class.  This class defines
     the behavior of your application's main dialog.  The dialog's
-    template is in MFC_test1.rc, which can be edited in Microsoft
+    template is in Oscill.rc, which can be edited in Microsoft
 	Visual C++.
 
 
@@ -64,7 +64,7 @@ Other standard files:
 
 StdAfx.h, StdAfx.cpp
     These files are used to build a precompiled header (PCH) file
-    named MFC_test1.pch and a precompiled types file named StdAfx.obj.
+    named Oscill.pch and a precompiled types file named StdAfx.obj.
 
 Resource.h
     This is the standard header file, which defines new resource IDs.

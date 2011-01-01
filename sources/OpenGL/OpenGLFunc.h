@@ -5,6 +5,7 @@
 #ifndef __OPENGLFUNC_H__
 #define __OPENGLFUNC_H__
 
+
 #include "..\..\sources\Dialog\Oscilldlg.h"
 #include <GL\gl.h>
 #include <GL\glu.h>
@@ -12,6 +13,7 @@
 
 #pragma comment (lib, "GLU32.lib")
 #pragma comment (lib, "OPENGL32.lib")
+
 
 #define GLLEFT		0.0f
 #define GLRIGHT		600.0f
@@ -61,8 +63,9 @@ private:
 };
 
 
-UINT    DspyThreadFunc( LPVOID lpParam );	//Display
+//UINT    DspyThreadFunc( LPVOID lpParam );	//Display
 
+/*
 extern	CEvent		g_eventDspy;
 extern	CCriticalSection g_ccsRWData;
 
@@ -70,9 +73,9 @@ extern	COpenGL		g_COGL;
 extern	SQueue		*g_psQueue;
 
 extern	COscillDlg	*g_pMainThis;
+*/
 
-extern	clock_t		start;
-extern	clock_t		finish;
-extern	double		duration;
+
+
 
 #endif /* __OPENGLFUNC_H__ */

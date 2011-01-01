@@ -172,7 +172,7 @@ struct SMeasPara
 
 //extern SMeasPara		g_sMeasPara;
 
-UINT    RecvThreadFunc( LPVOID lpParam );	//Do receive
+
 
 
 //{{AFX_INSERT_LOCATION}}

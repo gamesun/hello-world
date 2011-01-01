@@ -14,13 +14,16 @@
 
 
 #include "resource.h"		// main symbols
-#include "math.h"
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "..\..\sources\OpenGL\OpenGLFunc.h"
 #include "..\..\sources\SerialPort\EnumSerialPort.h"
+#include "..\..\sources\Thread\RecvThread.h"
+#include "..\..\sources\Thread\DspyThread.h"
+#include "..\..\sources\common\Global.h"
 
-#include <stdlib.h>
-#include <time.h>
 
 
 //#include "winuser.h"

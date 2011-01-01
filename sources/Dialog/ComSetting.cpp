@@ -11,7 +11,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern COscillDlg *g_pMainThis;
+//extern COscillDlg *g_pMainThis;
 /////////////////////////////////////////////////////////////////////////////
 // CComSetting dialog
 

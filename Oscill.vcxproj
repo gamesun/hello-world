@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\common\Const.h" />
+    <ClInclude Include="sources\common\Global.h" />
     <ClInclude Include="sources\Data\Queue.h" />
     <ClInclude Include="sources\Dialog\ComSetting.h" />
     <ClInclude Include="sources\Dialog\Oscill.h" />

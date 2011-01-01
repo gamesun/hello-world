@@ -106,9 +106,6 @@
     <ClInclude Include="sources\OpenGL\OpenGLFunc.h">
       <Filter>Header Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="sources\SerialPort\serialport.h">
-      <Filter>Header Files\SerialPort</Filter>
-    </ClInclude>
     <ClInclude Include="sources\SerialPort\EnumSerialPort.h">
       <Filter>Header Files\SerialPort</Filter>
     </ClInclude>
@@ -126,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="sources\Dialog\Oscilldlg.h">
       <Filter>Header Files\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\SerialPort\serialport.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\common\Global.h">
+      <Filter>Header Files\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
