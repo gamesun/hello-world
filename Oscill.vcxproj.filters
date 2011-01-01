@@ -19,40 +19,67 @@
     <Filter Include="Source Files\Dialog">
       <UniqueIdentifier>{926b6006-54d0-4b3f-9d2d-8a1280098004}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Func">
-      <UniqueIdentifier>{12577c88-e59d-4d5f-957f-22bc6df1462f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\SerialPort">
       <UniqueIdentifier>{15e7088c-46c7-4b39-9dac-34a9baf17d1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OpenGL">
+      <UniqueIdentifier>{12577c88-e59d-4d5f-957f-22bc6df1462f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL">
+      <UniqueIdentifier>{94a69be1-2d68-44f8-9400-e946cdf93c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SerialPort">
+      <UniqueIdentifier>{aad71614-964a-4760-b2d3-95de1d9e1644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Thread">
+      <UniqueIdentifier>{a3e25030-709e-45d5-9377-98aa83639a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{91fbebd6-dd94-4324-87bf-0ba2fc0d51a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dialog">
+      <UniqueIdentifier>{d355778d-7417-42b3-8ddc-e8eeb8b8ef80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data">
+      <UniqueIdentifier>{1fc3f279-7814-4fdf-9022-8a0e88b387da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data">
+      <UniqueIdentifier>{f55838a8-e8dc-40e1-8300-945b06173d36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ComSetting.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\Data\Queue.cpp">
+      <Filter>Source Files\Data</Filter>
     </ClCompile>
-    <ClCompile Include="mscomm.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\Dialog\ComSetting.cpp">
+      <Filter>Source Files\Dialog</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGLFunc.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\Dialog\Oscill.cpp">
+      <Filter>Source Files\Dialog</Filter>
     </ClCompile>
-    <ClCompile Include="Oscill.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\Dialog\StdAfx.cpp">
+      <Filter>Source Files\Dialog</Filter>
     </ClCompile>
-    <ClCompile Include="OscillDlg.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\OpenGL\OpenGLFunc.cpp">
+      <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="Queue.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\SerialPort\EnumSerialPort.cpp">
+      <Filter>Source Files\SerialPort</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\SerialPort\mscomm.cpp">
+      <Filter>Source Files\SerialPort</Filter>
     </ClCompile>
-    <ClCompile Include="SerialPort.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\SerialPort\SerialPort.cpp">
+      <Filter>Source Files\SerialPort</Filter>
     </ClCompile>
-    <ClCompile Include="EnumSerialPort.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sources\Thread\DspyThread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Thread\RecvThread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Dialog\Oscilldlg.cpp">
+      <Filter>Source Files\Dialog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,38 +88,44 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComSetting.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\common\Const.h">
+      <Filter>Header Files\common</Filter>
     </ClInclude>
-    <ClInclude Include="Const.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\Dialog\ComSetting.h">
+      <Filter>Header Files\Dialog</Filter>
     </ClInclude>
-    <ClInclude Include="mscomm.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\Dialog\Oscill.h">
+      <Filter>Header Files\Dialog</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLFunc.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\Dialog\Resource.h">
+      <Filter>Header Files\Dialog</Filter>
     </ClInclude>
-    <ClInclude Include="Oscill.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\Dialog\StdAfx.h">
+      <Filter>Header Files\Dialog</Filter>
     </ClInclude>
-    <ClInclude Include="OscillDlg.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\OpenGL\OpenGLFunc.h">
+      <Filter>Header Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\SerialPort\serialport.h">
+      <Filter>Header Files\SerialPort</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\SerialPort\EnumSerialPort.h">
+      <Filter>Header Files\SerialPort</Filter>
     </ClInclude>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\SerialPort\mscomm.h">
+      <Filter>Header Files\SerialPort</Filter>
     </ClInclude>
-    <ClInclude Include="serialport.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\Thread\DspyThread.h">
+      <Filter>Header Files\Thread</Filter>
     </ClInclude>
-    <ClInclude Include="EnumSerialPort.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sources\Thread\RecvThread.h">
+      <Filter>Header Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Data\Queue.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Dialog\Oscilldlg.h">
+      <Filter>Header Files\Dialog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

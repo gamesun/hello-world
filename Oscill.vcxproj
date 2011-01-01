@@ -126,36 +126,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ComSetting.cpp" />
-    <ClCompile Include="EnumSerialPort.cpp" />
-    <ClCompile Include="mscomm.cpp" />
-    <ClCompile Include="OpenGLFunc.cpp" />
-    <ClCompile Include="Oscill.cpp" />
-    <ClCompile Include="OscillDlg.cpp" />
-    <ClCompile Include="Queue.cpp" />
-    <ClCompile Include="SerialPort.cpp" />
-    <ClCompile Include="StdAfx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile Include="sources\Data\Queue.cpp" />
+    <ClCompile Include="sources\Dialog\ComSetting.cpp" />
+    <ClCompile Include="sources\Dialog\Oscill.cpp" />
+    <ClCompile Include="sources\Dialog\Oscilldlg.cpp" />
+    <ClCompile Include="sources\Dialog\StdAfx.cpp" />
+    <ClCompile Include="sources\OpenGL\OpenGLFunc.cpp" />
+    <ClCompile Include="sources\SerialPort\EnumSerialPort.cpp" />
+    <ClCompile Include="sources\SerialPort\mscomm.cpp" />
+    <ClCompile Include="sources\SerialPort\SerialPort.cpp" />
+    <ClCompile Include="sources\Thread\DspyThread.cpp" />
+    <ClCompile Include="sources\Thread\RecvThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Oscill.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComSetting.h" />
-    <ClInclude Include="Const.h" />
-    <ClInclude Include="EnumSerialPort.h" />
-    <ClInclude Include="mscomm.h" />
-    <ClInclude Include="OpenGLFunc.h" />
-    <ClInclude Include="Oscill.h" />
-    <ClInclude Include="OscillDlg.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="serialport.h" />
-    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="sources\common\Const.h" />
+    <ClInclude Include="sources\Data\Queue.h" />
+    <ClInclude Include="sources\Dialog\ComSetting.h" />
+    <ClInclude Include="sources\Dialog\Oscill.h" />
+    <ClInclude Include="sources\Dialog\Oscilldlg.h" />
+    <ClInclude Include="sources\Dialog\Resource.h" />
+    <ClInclude Include="sources\Dialog\StdAfx.h" />
+    <ClInclude Include="sources\OpenGL\OpenGLFunc.h" />
+    <ClInclude Include="sources\SerialPort\EnumSerialPort.h" />
+    <ClInclude Include="sources\SerialPort\mscomm.h" />
+    <ClInclude Include="sources\SerialPort\serialport.h" />
+    <ClInclude Include="sources\Thread\DspyThread.h" />
+    <ClInclude Include="sources\Thread\RecvThread.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="res\btnFallingD.bmp" />
