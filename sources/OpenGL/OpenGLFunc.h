@@ -7,6 +7,7 @@
 
 
 #include "..\..\sources\Dialog\Oscilldlg.h"
+#include "..\..\sources\Thread\DspyThread.h"
 #include <GL\gl.h>
 #include <GL\glu.h>
 //#include <GL\glut.h>
@@ -23,26 +24,17 @@
 #define GLHEIGHT	300.0f	//	| GLTOP - GLBOTTOM |
 #define GLWITDH		600.0f	//	| GLRIGHT - GLLEFT |
 
-#define CLEAR		( (bool)true )
-#define NO_CLEAR	( (bool)false )
-
-struct SDspyThreadInfo
-{
-	bool	bClearFlag;
-	
-};
 
 class COpenGL
 {
 public:
     COpenGL();
-    ~COpenGL();
+	~COpenGL();
 
-    HRESULT     InitOpenGL( COscillDlg *phWnd );
+	HRESULT     InitOpenGL( COscillDlg *phWnd );
     HRESULT     SetupPixelFormat( HWND hWnd );
     HRESULT     RptError( HWND hWnd, HRESULT hRet, LPCTSTR szError,... );
     GLvoid      ReleaseAllObjects( void );
-    friend UINT GLThreadFunc( LPVOID lpParam );
     GLvoid		DrawGrid( GLfloat left, GLfloat right, GLfloat bottom, GLfloat top );
 
 	
@@ -51,7 +43,7 @@ public:
     HDC         m_hDC;
     HGLRC       m_hRC1;
 //	HGLRC		m_hRC2;
-	SDspyThreadInfo	m_sDspyThreadInfo;
+	SDTPARA		m_sDspyThreadPara;
 
 	CWinThread	*m_pDspyThread;
 	bool		m_bDspyThreadRunning;
@@ -74,8 +66,6 @@ extern	SQueue		*g_psQueue;
 
 extern	COscillDlg	*g_pMainThis;
 */
-
-
 
 
 #endif /* __OPENGLFUNC_H__ */

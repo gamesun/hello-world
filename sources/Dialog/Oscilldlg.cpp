@@ -300,7 +300,7 @@ void COscillDlg::OnTimer(UINT nIDEvent)
 	// TODO: Add your message handler code here and/or call default
 	
 	g_eventCommRecv.SetEvent();
-
+//	WaitForSingleObject( m_pRecvThread->m_hThread, INFINITE );
 /*
 	static int m = 0;
 	static int noldPos = 0;
@@ -317,20 +317,20 @@ void COscillDlg::OnTimer(UINT nIDEvent)
 		m_nXCnt %= m_nSampPerFrame;
 	}
 	
-	m_nDivNum = ( g_psQueue->num - m_nXCnt ) / ( m_nSampPerFrame / 12 );
-	m_ctrlSbDrawFrame.SetScrollRange( 0, m_nDivNum );
+	m_nNumOfDiv = ( g_psQueue->num - m_nXCnt ) / ( m_nSampPerFrame / 12 );
+	m_ctrlSbDrawFrame.SetScrollRange( 0, m_nNumOfDiv );
 	
 	noldPos = m_ctrlSbDrawFrame.GetScrollPos();
-	m_ctrlSbDrawFrame.SetScrollPos( m_nDivNum, FALSE );
+	m_ctrlSbDrawFrame.SetScrollPos( m_nNumOfDiv, FALSE );
 
-	if ( noldPos != m_nDivNum )
+	if ( noldPos != m_nNumOfDiv )
 	{
 		m_nQueueRearOffset = 0;
 		UpdateFrame( CLEAR );
 	}
 	else
 	{
-		UpdateFrame( NO_CLEAR );
+		UpdateFrame( BASIC );
 	}
 */	
 	CDialog::OnTimer(nIDEvent);
@@ -344,19 +344,22 @@ void COscillDlg::OnTimer(UINT nIDEvent)
 //-----------------------------------------------------------------------------
 void COscillDlg::Calculate( void )
 {
+//	TRACE( ">>Enter Calculate\n" );
+	TRACE( "        Ask->Calc\n" );
 	g_ccsRWData.Lock();
+	TRACE( "        ->Calc\n" );
 
-	int nSampPerDiv = (int)( g_sMeasPara.nSampFreq * c_fTbScaleCoef[ m_byTbScale ] );
+	int nSampPerDiv = (int)( g_sMeasPara.nSampFreq * c_fTbScaleCoef[m_byTbScale] );
 	m_nSampPerFrame = 12 * nSampPerDiv;
 	
 //	m_nXCnt %= m_nSampPerFrame;
 	m_nXCnt = g_psQueue->num % m_nSampPerFrame;
-	m_nDivNum = ( g_psQueue->num - m_nXCnt ) / nSampPerDiv;
-	m_ctrlSbDrawFrame.SetScrollRange( 0, m_nDivNum );
+	m_nNumOfDiv = ( g_psQueue->num - m_nXCnt ) / nSampPerDiv;
+	m_ctrlSbDrawFrame.SetScrollRange( 0, m_nNumOfDiv );
 
 	int nPosition = m_ctrlSbDrawFrame.GetScrollPos();
 	
-	int ntmp = m_nDivNum - nPosition - ( 12 - m_nXCnt / nSampPerDiv );
+	int ntmp = m_nNumOfDiv - nPosition - ( 12 - m_nXCnt / nSampPerDiv );
 	if ( 0 < ntmp )
 	{
 		m_nQueueRearOffset = - m_nXCnt % nSampPerDiv - nSampPerDiv * ntmp;
@@ -366,7 +369,7 @@ void COscillDlg::Calculate( void )
 		m_nQueueRearOffset = 0;
 	}
 	
-	if ( nPosition == m_nDivNum )
+	if ( nPosition == m_nNumOfDiv )
 	{
 		m_nQueueRearOffset = 0;
 	}
@@ -374,13 +377,13 @@ void COscillDlg::Calculate( void )
 	m_nXCntOffset = 0;
 	if ( 0 == m_nQueueRearOffset )
 	{
-		m_nXCntOffset = ( m_nDivNum - nPosition ) * nSampPerDiv;
+		m_nXCntOffset = ( m_nNumOfDiv - nPosition ) * nSampPerDiv;
 	}
 
 /*
 	TRACE( "SampPerFrame:%5d DivNum:%3d Pos:%3d NUM:%5d QueueRearOffset:%6d XCnt:%5d XCntOffset:%3d\n", 
 			  m_nSampPerFrame, 
-			  m_nDivNum,
+			  m_nNumOfDiv,
 			  nPosition,
 			  g_psQueue->num,
 			  m_nQueueRearOffset,
@@ -388,19 +391,21 @@ void COscillDlg::Calculate( void )
 			  m_nXCntOffset
 			  );
 */
+	TRACE( "        <-Calc\n" );
 	g_ccsRWData.Unlock();
+//	TRACE( "  >>Leave Calculate\n" );
 }
 
 //-----------------------------------------------------------------------------
 // Name: UpdateFrame()
 // Desc: 
 //-----------------------------------------------------------------------------
-void COscillDlg::UpdateFrame( bool bClearFlag )
+void COscillDlg::UpdateFrame( BYTE byDrawMask )
 {
 // 	start = clock();
 //	TRACE( "Enter UpdateFrame\n" );
 	
-	g_COGL.m_sDspyThreadInfo.bClearFlag = bClearFlag;
+	g_COGL.m_sDspyThreadPara.byDrawMask = byDrawMask;
 	g_eventDspy.SetEvent();
 /*
 	int		xCnt;
@@ -411,7 +416,7 @@ void COscillDlg::UpdateFrame( bool bClearFlag )
 	xCnt = m_nXCnt + m_nXCntOffset + 1;			// add 1 so that fill the display area
 	
  	if ( m_nQueueRearOffset < 0 )	// when the nPosition is smaller than  
- 	{								// m_nDivNum, m_nQueueRearOffset != 0
+ 	{								// m_nNumOfDiv, m_nQueueRearOffset != 0
  		xCnt = m_nSampPerFrame;
  	}
 
@@ -473,6 +478,7 @@ void COscillDlg::UpdateFrame( bool bClearFlag )
 void 
 COscillDlg::OnDeltapos_spneditTimebaseScale(NMHDR* pNMHDR, LRESULT* pResult) 
 {
+//	TRACE( ">>Enter OnDeltapos_spneditTimebaseScale()\n" );
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
 	// TODO: Add your control notification handler code here
     
@@ -493,16 +499,18 @@ COscillDlg::OnDeltapos_spneditTimebaseScale(NMHDR* pNMHDR, LRESULT* pResult)
         }
         m_byTbScale++;
     }
-	
+//	TRACE( "m_byTbScale:%d\n", (int)m_byTbScale );
     m_editTimebaseScale.Format( _T( "%s" ), pc_szTbScale[m_byTbScale] );
-	
+//	TRACE( "pc_szTbScale[m_byTbScale]:%s\n", pc_szTbScale[m_byTbScale] );
+
     UpdateData( FALSE );
 
-	Calculate();
+//	Calculate();
 
-	UpdateFrame( CLEAR );
+	UpdateFrame( CLEAR | CALCULATE );
 
 	*pResult = 0;
+//	TRACE( "<<Leave OnDeltapos_spneditTimebaseScale()\n" );
 }
 
 void COscillDlg::OnDeltapos_spneditXPosition(NMHDR* pNMHDR, LRESULT* pResult) 
@@ -1043,6 +1051,7 @@ void COscillDlg::OnClose()
 	if(	WAIT_OBJECT_0 != WaitForSingleObject( m_pRecvThread->m_hThread, 100 ) )
 	{
 		TerminateThread( m_pRecvThread->m_hThread, -2 );
+		TRACE( "RecvThread has been terminated!(-2)\n" );
 	}
 	
 	g_COGL.m_bDspyThreadRunning = false;
@@ -1053,6 +1062,7 @@ void COscillDlg::OnClose()
 		WaitForSingleObject( g_COGL.m_pDspyThread->m_hThread, 100 ) )	
 	{
 		TerminateThread( g_COGL.m_pDspyThread->m_hThread, -1 );
+		TRACE( "DspyThread has been terminated!(-1)\n" );
 	}
 	
 	delete g_psQueue;
@@ -1117,7 +1127,7 @@ void COscillDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 		}
 		else if( SB_RIGHT == nSBCode )
 		{	
-			nPosition = m_nDivNum;
+			nPosition = m_nNumOfDiv;
 		}
 		else if (SB_THUMBTRACK == nSBCode )
 		{
@@ -1135,18 +1145,18 @@ void COscillDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 		{
 			nPosition = 0;
 		}
-		if( nPosition > m_nDivNum )
+		if( nPosition > m_nNumOfDiv )
 		{
-			nPosition = m_nDivNum;
+			nPosition = m_nNumOfDiv;
 		}
 		
 		pScrollBar->SetScrollPos( nPosition );
 
 
-		Calculate();
+//		Calculate();
 //		TRACE( "  m_nQRO = %d, m_nSPF = %d", 
 //			   m_nQueueRearOffset, m_nSampPerFrame );
-		UpdateFrame( CLEAR );
+		UpdateFrame( CLEAR | CALCULATE );
 	}
 	
 	CDialog::OnHScroll( nSBCode, nPos, pScrollBar );
@@ -1239,20 +1249,20 @@ void COscillDlg::OnCommMscomm1()
 					m_nXCnt %= m_nSampPerFrame;
 				}
 				
-				m_nDivNum = ( g_psQueue->num - m_nXCnt ) / ( m_nSampPerFrame / 12 );
-				m_ctrlSbDrawFrame.SetScrollRange( 0, m_nDivNum );
+				m_nNumOfDiv = ( g_psQueue->num - m_nXCnt ) / ( m_nSampPerFrame / 12 );
+				m_ctrlSbDrawFrame.SetScrollRange( 0, m_nNumOfDiv );
 				
 				noldPos = m_ctrlSbDrawFrame.GetScrollPos();
-				m_ctrlSbDrawFrame.SetScrollPos( m_nDivNum, FALSE );
+				m_ctrlSbDrawFrame.SetScrollPos( m_nNumOfDiv, FALSE );
 				
-				if ( noldPos != m_nDivNum )
+				if ( noldPos != m_nNumOfDiv )
 				{
 					m_nQueueRearOffset = 0;
 					UpdateFrame( CLEAR );
 				}
 				else
 				{
-					UpdateFrame( NO_CLEAR );
+					UpdateFrame( BASIC );
 				}
 */
 

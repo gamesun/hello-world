@@ -93,7 +93,7 @@ COpenGL::InitOpenGL( COscillDlg *pCWnd )
 	wglMakeCurrent( NULL, NULL );
 
 	m_bDspyThreadRunning = true;
-	m_pDspyThread = AfxBeginThread( DspyThreadFunc, &m_sDspyThreadInfo/*, THREAD_PRIORITY_HIGHEST*/ );
+	m_pDspyThread = AfxBeginThread( DspyThreadFunc, &m_sDspyThreadPara/*, THREAD_PRIORITY_HIGHEST*/ );
 
     return TRUE;
 }

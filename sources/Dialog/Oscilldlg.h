@@ -23,7 +23,7 @@ public:
 	CWinThread  *m_pRecvThread;
 	bool	m_bRecvThreadRunning;
 
-	void	UpdateFrame( bool bClearFlag = false );
+	void	UpdateFrame( BYTE byDrawMask );
 	
 	
 	//Timebase
@@ -43,7 +43,7 @@ public:
 	int		m_nXCnt;				//Count the the number of points to display
 	int		m_nXCntOffset;			//When review the waveform,...hard to say
 	int		m_nSampPerFrame;		//the points' number per frame
-	int		m_nDivNum;			//the number of all the divisions
+	int		m_nNumOfDiv;			//the number of all the divisions
 	long	m_nQueueRearOffset;		//
 	
     //Timebase

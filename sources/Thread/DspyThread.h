@@ -13,26 +13,21 @@
 #ifndef __DSPYTHREAD_H__
 #define __DSPYTHREAD_H__
 
-/*-----------------------------------------------------------> For Debug <--*/
-
-/*------------------------------------------------------------> Inclueds <--*/
 #include "..\..\sources\Dialog\StdAfx.h"
 
-/*----------------------------------------------------------> Structures <--*/
+#define BASIC		(BYTE)1
+#define CLEAR		(BYTE)2
+#define CALCULATE	(BYTE)4
 
-/*----------------------------------------------------------> Prototypes <--*/
+
+typedef struct tagSDTPARA	//DspyThread Para
+{
+	BYTE	byDrawMask;
+
+}SDTPARA;
+
+
 UINT    DspyThreadFunc( LPVOID lpParam );	//Display
-
-/*--------------------------------------------------> External Functions <--*/
-
-/*--------------------------------------------------> External Variables <--*/
-
-/*-------------------------------------------------------> Local Defines <--*/
-
-/*-----------------------------------------------------> Local Variables <--*/
-
-/*-----------------------------------------------------------> Constants <--*/
-
 
 
 #endif /* __DSPYTHREAD_H__ */
