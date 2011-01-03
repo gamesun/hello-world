@@ -147,13 +147,13 @@ protected:
 	afx_msg void OnReceive();
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnbtnMSCommSend();
-	afx_msg void OnCommMscomm1();
+//	afx_msg void OnCommMscomm1();
 	afx_msg void OnComsetting();
 	afx_msg void OnClose();
 	afx_msg void OnBtnComOpen();
-	DECLARE_EVENTSINK_MAP()
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+// 	DECLARE_EVENTSINK_MAP()
+// 	//}}AFX_MSG
+ 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedbtnreverse();

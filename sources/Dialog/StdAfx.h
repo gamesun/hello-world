@@ -21,6 +21,8 @@
 #include "..\..\sources\common\Const.h"
 #include "..\..\sources\Data\Queue.h"
 #include "..\..\sources\SerialPort\serialport.h"
+#include "..\..\sources\common\Debug.h"
+
 
 /*---------------------------------------------------------------------------*/
 

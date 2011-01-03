@@ -23,10 +23,7 @@ SMeasPara		 g_sMeasPara;
 
 COscillDlg		 *g_pMainThis;
 
-clock_t			 start;
-clock_t			 finish;
-double			 duration;
-
+double			 g_fDbgCpuFrequency;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -146,9 +143,11 @@ BOOL COscillDlg::OnInitDialog()
 	m_ctrlbmpbtnRising.AutoLoad( IDC_btnTriggerRising, this );
 	m_ctrlbmpbtnFalling.AutoLoad( IDC_btnTriggerFalling, this );
 
+#if OSCILL_DEBUG_RECV_TIME_COST
+	g_fDbgCpuFrequency = (double)CPU_Frequency();
+#endif
 /////////////////////////// TEST ///////////////////////////
 	g_pMainThis = this;
-
 
 	g_sMeasPara.nSampFreq = 100000;	// 100kHz
 //	m_nBufLength = ( int )( g_sMeasPara.nSampFreq * 0.02 );
@@ -344,10 +343,10 @@ void COscillDlg::OnTimer(UINT nIDEvent)
 //-----------------------------------------------------------------------------
 void COscillDlg::Calculate( void )
 {
-//	TRACE( ">>Enter Calculate\n" );
-	TRACE( "        Ask->Calc\n" );
+//	TRACE( ">>Enter Calculate\r\n" );
+	TRACE( "        Ask->Calc\r\n" );
 	g_ccsRWData.Lock();
-	TRACE( "        ->Calc\n" );
+	TRACE( "        ->Calc\r\n" );
 
 	int nSampPerDiv = (int)( g_sMeasPara.nSampFreq * c_fTbScaleCoef[m_byTbScale] );
 	m_nSampPerFrame = 12 * nSampPerDiv;
@@ -381,7 +380,7 @@ void COscillDlg::Calculate( void )
 	}
 
 /*
-	TRACE( "SampPerFrame:%5d DivNum:%3d Pos:%3d NUM:%5d QueueRearOffset:%6d XCnt:%5d XCntOffset:%3d\n", 
+	TRACE( "SampPerFrame:%5d DivNum:%3d Pos:%3d NUM:%5d QueueRearOffset:%6d XCnt:%5d XCntOffset:%3d\r\n", 
 			  m_nSampPerFrame, 
 			  m_nNumOfDiv,
 			  nPosition,
@@ -391,9 +390,9 @@ void COscillDlg::Calculate( void )
 			  m_nXCntOffset
 			  );
 */
-	TRACE( "        <-Calc\n" );
+	TRACE( "        <-Calc\r\n" );
 	g_ccsRWData.Unlock();
-//	TRACE( "  >>Leave Calculate\n" );
+//	TRACE( "  >>Leave Calculate\r\n" );
 }
 
 //-----------------------------------------------------------------------------
@@ -403,7 +402,7 @@ void COscillDlg::Calculate( void )
 void COscillDlg::UpdateFrame( BYTE byDrawMask )
 {
 // 	start = clock();
-//	TRACE( "Enter UpdateFrame\n" );
+//	TRACE( "Enter UpdateFrame\r\n" );
 	
 	g_COGL.m_sDspyThreadPara.byDrawMask = byDrawMask;
 	g_eventDspy.SetEvent();
@@ -466,11 +465,11 @@ void COscillDlg::UpdateFrame( BYTE byDrawMask )
 
 // 	finish = clock();
 // 	duration = (double)(finish - start);
-// 	TRACE( "UpdateFrame:\t%f\n", duration );
+// 	TRACE( "UpdateFrame:\t%f\r\n", duration );
 
 //	wglMakeCurrent(NULL, NULL);
 
-//	TRACE( "Leave UpdateFrame\n" );
+//	TRACE( "Leave UpdateFrame\r\n" );
 */
 }
 
@@ -478,7 +477,7 @@ void COscillDlg::UpdateFrame( BYTE byDrawMask )
 void 
 COscillDlg::OnDeltapos_spneditTimebaseScale(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-//	TRACE( ">>Enter OnDeltapos_spneditTimebaseScale()\n" );
+//	TRACE( ">>Enter OnDeltapos_spneditTimebaseScale()\r\n" );
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
 	// TODO: Add your control notification handler code here
     
@@ -499,9 +498,9 @@ COscillDlg::OnDeltapos_spneditTimebaseScale(NMHDR* pNMHDR, LRESULT* pResult)
         }
         m_byTbScale++;
     }
-//	TRACE( "m_byTbScale:%d\n", (int)m_byTbScale );
+//	TRACE( "m_byTbScale:%d\r\n", (int)m_byTbScale );
     m_editTimebaseScale.Format( _T( "%s" ), pc_szTbScale[m_byTbScale] );
-//	TRACE( "pc_szTbScale[m_byTbScale]:%s\n", pc_szTbScale[m_byTbScale] );
+//	TRACE( "pc_szTbScale[m_byTbScale]:%s\r\n", pc_szTbScale[m_byTbScale] );
 
     UpdateData( FALSE );
 
@@ -510,7 +509,7 @@ COscillDlg::OnDeltapos_spneditTimebaseScale(NMHDR* pNMHDR, LRESULT* pResult)
 	UpdateFrame( CLEAR | CALCULATE );
 
 	*pResult = 0;
-//	TRACE( "<<Leave OnDeltapos_spneditTimebaseScale()\n" );
+//	TRACE( "<<Leave OnDeltapos_spneditTimebaseScale()\r\n" );
 }
 
 void COscillDlg::OnDeltapos_spneditXPosition(NMHDR* pNMHDR, LRESULT* pResult) 
@@ -1038,7 +1037,7 @@ void COscillDlg::OnComsetting()
 //	CRect	pRectMainDlg;
 	
 //	GetWindowRect( pRectMainDlg );
-//	TRACE( "Height:%d, Width:%d\n", pRectMainDlg.Height(), pRectMainDlg.Width() );
+//	TRACE( "Height:%d, Width:%d\r\n", pRectMainDlg.Height(), pRectMainDlg.Width() );
 	
 	setDlg.DoModal();
 }
@@ -1050,8 +1049,15 @@ void COscillDlg::OnClose()
 	g_eventCommRecv.SetEvent();
 	if(	WAIT_OBJECT_0 != WaitForSingleObject( m_pRecvThread->m_hThread, 100 ) )
 	{
-		TerminateThread( m_pRecvThread->m_hThread, -2 );
-		TRACE( "RecvThread has been terminated!(-2)\n" );
+		if ( FALSE == TerminateThread( m_pRecvThread->m_hThread, -2 ) )
+		{
+			TRACE( "Terminate RecvThread Failure\r\n" );
+//			ShowLastError( TEXT( "TerminateThread[RecvThread]" ) );
+		}
+		else
+		{
+			TRACE( "RecvThread has been terminated!(-2)\r\n" );
+		}
 	}
 	
 	g_COGL.m_bDspyThreadRunning = false;
@@ -1061,8 +1067,15 @@ void COscillDlg::OnClose()
 	if(	WAIT_OBJECT_0 !=							
 		WaitForSingleObject( g_COGL.m_pDspyThread->m_hThread, 100 ) )	
 	{
-		TerminateThread( g_COGL.m_pDspyThread->m_hThread, -1 );
-		TRACE( "DspyThread has been terminated!(-1)\n" );
+		if ( FALSE == TerminateThread( g_COGL.m_pDspyThread->m_hThread, -1 ) )
+		{
+			TRACE( "Terminate DspyThread Failure\r\n" );
+//			ShowLastError( TEXT( "TerminateThread[DspyThread]" ) );
+		}
+		else
+		{
+			TRACE( "DspyThread has been terminated!(-1)\r\n" );
+		}
 	}
 	
 	delete g_psQueue;
@@ -1086,9 +1099,9 @@ void COscillDlg::OnBnClickedbtnreverse()
 	
 	if ( NULL != psSerialPortInfo )
 	{
-		for ( i = 1; i <= psSerialPortInfo->nNum ; i++ )
+		for ( i = 1; i <= psSerialPortInfo->nNum; i++ )
 		{
-			TRACE( "No.%d,%s\n", i, psSerialPortInfo->pszList[i] );
+			TRACE( "No.%d,%s\r\n", i, psSerialPortInfo->pszList[i] );
 		}
 		
 	}
@@ -1180,14 +1193,15 @@ void COscillDlg::OnbtnMSCommSend()
 //	m_mscom.SetOutput( COleVariant(sendArr) );
 }
 
-BEGIN_EVENTSINK_MAP(COscillDlg, CDialog)
+//BEGIN_EVENTSINK_MAP(COscillDlg, CDialog)
     //{{AFX_EVENTSINK_MAP(COscillDlg)
 //	ON_EVENT(COscillDlg, IDC_MSCOMM1, 1 /* OnComm */, OnCommMscomm1, VTS_NONE)
 	//}}AFX_EVENTSINK_MAP
-END_EVENTSINK_MAP()
+//END_EVENTSINK_MAP()
 
-void COscillDlg::OnCommMscomm1() 
-{
+
+//void COscillDlg::OnCommMscomm1() 
+//{
 	// TODO: Add your control notification handler code here
 //	start = clock();
 
@@ -1225,21 +1239,21 @@ void COscillDlg::OnCommMscomm1()
 			}
 //			szRxData[i] = '\0';
 			//************************************************************************
-//			TRACE( "%s \n", szRxData );
-//			TRACE( "\n" );
+//			TRACE( "%s \r\n", szRxData );
+//			TRACE( "\r\n" );
 
 // 						if( bRecvDigitHigh )
 // 						{
 // 							nTmpH = szRxData[0] & 0xff;
 // 							nTmpH = nTmpH << 8;
-// 							TRACE( "\nH %02x ", nTmpH );
+// 							TRACE( "\r\nH %02x ", nTmpH );
 // 						}
 // 						else
 // 						{
 
 
 				nTmpL = szRxData[0] & 0xff;
-				TRACE( "\nL %02x", nTmpL );
+				TRACE( "\r\nL %02x", nTmpL );
 				INSQueue( g_psQueue, (SHORT)( ( /*nTmpH | *///nTmpL ) ) ); 
 
 /*
@@ -1294,8 +1308,8 @@ void COscillDlg::OnCommMscomm1()
 
 // 	finish = clock();
 // 	duration = (double)(finish - start);
-// 	TRACE( "OnCommMscomm1:\t%f\n", duration );
-}
+// 	TRACE( "OnCommMscomm1:\t%f\r\n", duration );
+//}
 
 void COscillDlg::OnBtnComOpen() 
 {
@@ -1305,13 +1319,13 @@ void COscillDlg::OnBtnComOpen()
 	{
 		m_mscom.SetPortOpen( TRUE );
 		m_ctrlBtnComOpen.SetWindowText( "Close" );
-		TRACE( "COM Open!\n" );
+		TRACE( "COM Open!\r\n" );
 	}
 	else
 	{
 		m_mscom.SetPortOpen( FALSE );
 		m_ctrlBtnComOpen.SetWindowText( "Open" );
-		TRACE( "COM Close!\n" );
+		TRACE( "COM Close!\r\n" );
 	}*/
 
 }

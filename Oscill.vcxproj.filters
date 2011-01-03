@@ -46,6 +46,9 @@
     <Filter Include="Source Files\Data">
       <UniqueIdentifier>{f55838a8-e8dc-40e1-8300-945b06173d36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{27155efa-2469-4209-af41-bc0c54295dc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Data\Queue.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="sources\Dialog\Oscilldlg.cpp">
       <Filter>Source Files\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\common\Debug.cpp">
+      <Filter>Source Files\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +134,9 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\common\Global.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\common\Debug.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
   </ItemGroup>

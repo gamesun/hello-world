@@ -1,35 +1,11 @@
-/****************************************************************************/
-/*	Virtual Oscilloscopes Upper Computer Application						*/
-/*																			*/
-/*--------------------------------------------------------------------------*/
-/*	File Name	:	DspyThread.cpp											*/
-/*	Coder		:	sun.yt													*/
-/*	Purpose		:															*/
-/*																			*/
-/****************************************************************************/
 
-#pragma once
 
-/*-----------------------------------------------------------> For Debug <--*/
-
-/*------------------------------------------------------------> Inclueds <--*/
 #include "DspyThread.h"
 #include "..\..\sources\Dialog\Resource.h"
 #include "..\..\sources\OpenGL\OpenGLFunc.h"
 #include "..\..\sources\common\Global.h"
 #include "..\..\sources\common\Const.h"
 
-/*----------------------------------------------------------> Prototypes <--*/
-
-/*--------------------------------------------------> External Functions <--*/
-
-/*--------------------------------------------------> External Variables <--*/
-
-/*-------------------------------------------------------> Local Defines <--*/
-
-/*-----------------------------------------------------> Local Variables <--*/
-
-/*-----------------------------------------------------------> Constants <--*/
 
 //-----------------------------------------------------------------------------
 // Name: DspyThreadFunc
@@ -37,7 +13,7 @@
 //-----------------------------------------------------------------------------
 UINT DspyThreadFunc( LPVOID lpParam )
 {
-	//	TRACE( "Enter DspyThreadFunc()\n" );
+	//	TRACE( "Enter DspyThreadFunc()\r\n" );
 	SDTPARA		*pInfo;
 	BYTE		*pbyDrawMask;
 	BYTE		byDrawMask;
@@ -80,19 +56,22 @@ UINT DspyThreadFunc( LPVOID lpParam )
 		{
 			break;
 		}
-//		TRACE( "Ask->Dspy\n" );
+
+		byDrawMask = *pbyDrawMask;		//get the para
+
+//		TRACE( "Ask->Dspy\r\n" );
 		g_ccsRWData.Lock();
-//		TRACE( "->Dspy\n" );
+//		TRACE( "->Dspy\r\n" );
 		//		start = clock();
 		
-		byDrawMask = *pbyDrawMask;
+		
 //////////////////////////////////////////////////////////////////////////
-		//	TRACE( ">>Enter Calculate\n" );
+		//	TRACE( ">>Enter Calculate\r\n" );
 		if ( 0 != (BYTE)( byDrawMask & CALCULATE ) )
 		{
-//			TRACE( "        Ask->Calc\n" );
+//			TRACE( "        Ask->Calc\r\n" );
 			// 	g_ccsRWData.Lock();
-			//	TRACE( "        ->Calc\n" );
+			//			TRACE( "        ->Calc\r\n" );
 
 			int nSampPerDiv = (int)( g_sMeasPara.nSampFreq * c_fTbScaleCoef[*pm_byTbScale] );
 			*pm_nSampPerFrame = 12 * nSampPerDiv;
@@ -126,7 +105,7 @@ UINT DspyThreadFunc( LPVOID lpParam )
 			}
 
 /*
-			TRACE( "SampPerFrame:%5d DivNum:%3d Pos:%3d NUM:%5d QueueRearOffset:%6d XCnt:%5d XCntOffset:%3d\n", 
+			TRACE( "SampPerFrame:%5d DivNum:%3d Pos:%3d NUM:%5d QueueRearOffset:%6d XCnt:%5d XCntOffset:%3d\r\n", 
 					  m_nSampPerFrame, 
 					  m_nNumOfDiv,
 					  nPosition,
@@ -136,10 +115,10 @@ UINT DspyThreadFunc( LPVOID lpParam )
 					  m_nXCntOffset
 					  );
 */
-//			TRACE( "        <-Calc\n" );
+//			TRACE( "        <-Calc\r\n" );
 		}
 //	g_ccsRWData.Unlock();
-//	TRACE( "  >>Leave Calculate\n" );
+//	TRACE( "  >>Leave Calculate\r\n" );
 //////////////////////////////////////////////////////////////////////////
 
 		*pm_nXCnt %= *pm_nSampPerFrame;	// make sure m_nXCnt < m_nSampPerFrame   
@@ -170,7 +149,7 @@ UINT DspyThreadFunc( LPVOID lpParam )
 		if ( bClearFlag || ( 0 == *pm_nXCnt ) )
 		{
 			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-			//			TRACE( "%d\n", ( *pbClearFlag ? 1 : 0 ) );
+			//			TRACE( "%d\r\n", ( *pbClearFlag ? 1 : 0 ) );
 		}
 
 		g_COGL.DrawGrid( GLLEFT, GLRIGHT, GLBOTTOM, GLTOP );
@@ -203,13 +182,13 @@ UINT DspyThreadFunc( LPVOID lpParam )
 
 		// 		finish = clock();
 		// 		duration = (double)(finish - start);
-		// 		TRACE( "glClear:\t%f\n", duration );
-//		TRACE( "<-Dspy\n" );
+		// 		TRACE( "glClear:\t%f\r\n", duration );
+//		TRACE( "<-Dspy\r\n" );
 		g_ccsRWData.Unlock();
 	}
 
 	wglMakeCurrent( NULL, NULL );
 
-	//	TRACE( "Leave DspyThreadFunc()\n" );
+	TRACE( "Leave DspyThreadFunc()\r\n" );
 	return 0;
 }

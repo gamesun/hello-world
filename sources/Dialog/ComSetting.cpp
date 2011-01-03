@@ -140,26 +140,26 @@ void CComSetting::OnbtnApply()
 	
 	CString szSpeed;
 	m_cboSpeed.GetWindowText( szSpeed );
-	TRACE( "szSpeed:%s\n", szSpeed );
+	TRACE( "szSpeed:%s\r\n", szSpeed );
 	
 	CString szParity;
 	m_cboParity.GetWindowText( szParity );
 	szParity.MakeLower();
 	szParity = szParity.GetAt( 0 );
-	TRACE( "szParity:%s\n", szParity );
+	TRACE( "szParity:%s\r\n", szParity );
 	
 	
 	CString szDataBits;
 	m_cboDataBits.GetWindowText( szDataBits );
-	TRACE( "szDataBits:%s\n", szDataBits );
+	TRACE( "szDataBits:%s\r\n", szDataBits );
 	
 	CString szStopBits;
 	m_cboStopBits.GetWindowText( szStopBits );
-	TRACE( "szStopBits:%s\n", szStopBits );
+	TRACE( "szStopBits:%s\r\n", szStopBits );
 	
 	char	szSet[50];
 	sprintf_s( szSet, "%s,%s,%s,%s", szSpeed, szParity, szDataBits, szStopBits );
-	TRACE( "szSet:%s\n", szSet );
+	TRACE( "szSet:%s\r\n", szSet );
 	
 	g_pMainThis->m_mscom.SetSettings( szSet );
 	
@@ -327,7 +327,7 @@ void CComSetting::OnbtnApply()
 	}
 	catch (CSerialException* pEx)
 	{
-		TRACE(_T("Handle Exception, Message:%s\n"), pEx->GetErrorMessage().operator LPCTSTR());
+		TRACE(_T("Handle Exception, Message:%s\r\n"), pEx->GetErrorMessage().operator LPCTSTR());
 		pEx->Delete();
 	}
 

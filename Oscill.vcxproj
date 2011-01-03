@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sources\common\Debug.cpp" />
     <ClCompile Include="sources\Data\Queue.cpp" />
     <ClCompile Include="sources\Dialog\ComSetting.cpp" />
     <ClCompile Include="sources\Dialog\Oscill.cpp" />
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\common\Const.h" />
+    <ClInclude Include="sources\common\Debug.h" />
     <ClInclude Include="sources\common\Global.h" />
     <ClInclude Include="sources\Data\Queue.h" />
     <ClInclude Include="sources\Dialog\ComSetting.h" />

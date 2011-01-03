@@ -17,7 +17,7 @@ int INSQueue( SQueue *sq, QUDA nSrcData )
 {
 // 	if ( MAX_SAMP_RECORD == sq->num )
 // 	{
-// 		TRACE( "\nQueue is Full" );
+// 		TRACE( "\r\nQueue is Full" );
 // 		return -1;
 // 	} 
 // 	else
