@@ -6,22 +6,22 @@
 #define __DEBUG_H__
 
 //time debug
-#define OSCILL_DEBUG_RECV_TIME_COST		0
-#define OSCILL_DEBUG_XXXX				0
+#define OSCILL_DEBUG_TIME_RECV_COST		0
+#define OSCILL_DEBUG_TIME_XXXX			0
 
-#define OSCILL_DEBUG				( OSCILL_DEBUG_RECV_TIME_COST \
-									| OSCILL_DEBUG_XXXX )
-
-
+#define OSCILL_DEBUG_TIME			( OSCILL_DEBUG_TIME_RECV_COST \
+									| OSCILL_DEBUG_TIME_XXXX )
 
 
-#if OSCILL_DEBUG_RECV_TIME_COST
+
+
+#if OSCILL_DEBUG_TIME
 extern double	g_fDbgCpuFrequency;
 
 extern int CPU_Frequency( void );
 #endif
 
-#if OSCILL_DEBUG_XXXX
+#if OSCILL_DEBUG_TIME_XXXX
 
 #endif
 

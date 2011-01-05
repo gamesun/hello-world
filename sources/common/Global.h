@@ -17,6 +17,6 @@ extern	COscillDlg	*g_pMainThis;
 
 extern	CEvent		g_eventDspy;
 extern	CEvent		g_eventCommRecv;
-extern	CCriticalSection	g_ccsRWData;
+extern	CCriticalSection	g_csRWData;
 
 #endif /* __GLOBAL_H__ */

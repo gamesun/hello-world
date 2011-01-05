@@ -14,7 +14,7 @@ static char THIS_FILE[] = __FILE__;
 
 CEvent			 g_eventDspy;
 CEvent			 g_eventCommRecv;
-CCriticalSection g_ccsRWData;
+CCriticalSection g_csRWData;
 
 BOOL			 g_bActive;
 COpenGL			 g_COGL;
@@ -143,8 +143,9 @@ BOOL COscillDlg::OnInitDialog()
 	m_ctrlbmpbtnRising.AutoLoad( IDC_btnTriggerRising, this );
 	m_ctrlbmpbtnFalling.AutoLoad( IDC_btnTriggerFalling, this );
 
-#if OSCILL_DEBUG_RECV_TIME_COST
+#if OSCILL_DEBUG_TIME
 	g_fDbgCpuFrequency = (double)CPU_Frequency();
+	TRACE( "CPU Freq:%d[MHz]\r\n", (int)g_fDbgCpuFrequency );
 #endif
 /////////////////////////// TEST ///////////////////////////
 	g_pMainThis = this;
@@ -345,7 +346,7 @@ void COscillDlg::Calculate( void )
 {
 //	TRACE( ">>Enter Calculate\r\n" );
 	TRACE( "        Ask->Calc\r\n" );
-	g_ccsRWData.Lock();
+	g_csRWData.Lock();
 	TRACE( "        ->Calc\r\n" );
 
 	int nSampPerDiv = (int)( g_sMeasPara.nSampFreq * c_fTbScaleCoef[m_byTbScale] );
@@ -391,7 +392,7 @@ void COscillDlg::Calculate( void )
 			  );
 */
 	TRACE( "        <-Calc\r\n" );
-	g_ccsRWData.Unlock();
+	g_csRWData.Unlock();
 //	TRACE( "  >>Leave Calculate\r\n" );
 }
 
@@ -1045,6 +1046,11 @@ void COscillDlg::OnComsetting()
 void COscillDlg::OnClose() 
 {
 	// TODO: Add your message handler code here and/or call default
+////////////////////////////// Close Serialport //////////////////////////////
+	
+	
+//////////////////////////////////////////////////////////////////////////////
+
 	m_bRecvThreadRunning = false;
 	g_eventCommRecv.SetEvent();
 	if(	WAIT_OBJECT_0 != WaitForSingleObject( m_pRecvThread->m_hThread, 100 ) )

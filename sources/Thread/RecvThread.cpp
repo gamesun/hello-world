@@ -45,10 +45,10 @@ UINT RecvThreadFunc( LPVOID lpParam )
 			break;
 		}
 //		TRACE( "    Ask->Recv\r\n" );
-		g_ccsRWData.Lock();
+		g_csRWData.Lock();
 //		TRACE( "    ->Recv\r\n" );
 
-#if OSCILL_DEBUG_RECV_TIME_COST
+#if OSCILL_DEBUG_TIME_RECV_COST
 /*
 		LARGE_INTEGER nFreq;
 		LARGE_INTEGER nLastTime1;
@@ -68,7 +68,7 @@ UINT RecvThreadFunc( LPVOID lpParam )
 			mov		HighStart,	edx 
 			mov		LowStart,	eax	
 		}
-#endif /* OSCILL_DEBUG_RECV_TIME_COST */
+#endif /* OSCILL_DEBUG_TIME_RECV_COST */
 /*	
 		variant_inp = g_pMainThis->m_mscom.GetInput();
 		
@@ -133,7 +133,7 @@ UINT RecvThreadFunc( LPVOID lpParam )
 			g_pMainThis->UpdateFrame( BASIC );
 		}
 
-#if OSCILL_DEBUG_RECV_TIME_COST
+#if OSCILL_DEBUG_TIME_RECV_COST
 
 		__asm
 		{
@@ -163,9 +163,9 @@ L2:			sbb		edx,		HighStart
 		double fInterval = nLastTime2.QuadPart - nLastTime1.QuadPart;
 		TRACE( "RecvCost:%f[ms]\r\n", 1000 * ( fInterval / (double)nFreq.QuadPart ) );
 */
-#endif /* OSCILL_DEBUG_RECV_TIME_COST */
+#endif /* OSCILL_DEBUG_TIME_RECV_COST */
 //		TRACE( "    <-Recv\r\n" );
-		g_ccsRWData.Unlock();
+		g_csRWData.Unlock();
 	}
 
 	TRACE( "Leave RecvThreadFunc()\r\n" );

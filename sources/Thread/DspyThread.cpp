@@ -60,7 +60,7 @@ UINT DspyThreadFunc( LPVOID lpParam )
 		byDrawMask = *pbyDrawMask;		//get the para
 
 //		TRACE( "Ask->Dspy\r\n" );
-		g_ccsRWData.Lock();
+		g_csRWData.Lock();
 //		TRACE( "->Dspy\r\n" );
 		//		start = clock();
 		
@@ -70,7 +70,7 @@ UINT DspyThreadFunc( LPVOID lpParam )
 		if ( 0 != (BYTE)( byDrawMask & CALCULATE ) )
 		{
 //			TRACE( "        Ask->Calc\r\n" );
-			// 	g_ccsRWData.Lock();
+			// 	g_csRWData.Lock();
 			//			TRACE( "        ->Calc\r\n" );
 
 			int nSampPerDiv = (int)( g_sMeasPara.nSampFreq * c_fTbScaleCoef[*pm_byTbScale] );
@@ -117,7 +117,7 @@ UINT DspyThreadFunc( LPVOID lpParam )
 */
 //			TRACE( "        <-Calc\r\n" );
 		}
-//	g_ccsRWData.Unlock();
+//	g_csRWData.Unlock();
 //	TRACE( "  >>Leave Calculate\r\n" );
 //////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +184,7 @@ UINT DspyThreadFunc( LPVOID lpParam )
 		// 		duration = (double)(finish - start);
 		// 		TRACE( "glClear:\t%f\r\n", duration );
 //		TRACE( "<-Dspy\r\n" );
-		g_ccsRWData.Unlock();
+		g_csRWData.Unlock();
 	}
 
 	wglMakeCurrent( NULL, NULL );
