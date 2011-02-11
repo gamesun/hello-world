@@ -143,10 +143,10 @@
     <ResourceCompile Include="Oscill.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="sources\common\Const.h" />
     <ClInclude Include="sources\common\Debug.h" />
     <ClInclude Include="sources\common\Global.h" />
+    <ClInclude Include="sources\common\resource.h" />
     <ClInclude Include="sources\Data\Queue.h" />
     <ClInclude Include="sources\Dialog\ComSetting.h" />
     <ClInclude Include="sources\Dialog\Oscill.h" />

@@ -36,7 +36,7 @@ public:
     HRESULT     RptError( HWND hWnd, HRESULT hRet, LPCTSTR szError,... );
     GLvoid      ReleaseAllObjects( void );
     GLvoid		DrawGrid( GLfloat left, GLfloat right, GLfloat bottom, GLfloat top );
-
+	GLvoid		DrawRuler( GLint x );
 	
     CWnd		*m_pCDrawWnd;
 	CClientDC   *m_pDC;

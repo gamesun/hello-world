@@ -264,8 +264,7 @@ COpenGL::DrawGrid(
 // Name: DrawRuler()
 // Desc: 
 //-----------------------------------------------------------------------------
-GLvoid 
-	COpenGL::DrawRuler( GLint x )
+GLvoid COpenGL::DrawRuler( GLint x )
 {
 
 }

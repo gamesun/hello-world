@@ -13,7 +13,7 @@
 #endif
 
 
-#include "resource.h"		// main symbols
+#include "..\..\sources\common\resource.h"		// main symbols
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
