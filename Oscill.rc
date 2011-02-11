@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include ".\sources\Dialog\Resource.h"
+#include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -78,13 +78,6 @@ IDR_MAINFRAME           ICON                    "res\\Oscill.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// RT_MANIFEST
-//
-
-//1                       RT_MANIFEST             "XPStyle.manifest"
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Dialog
 //
 
@@ -115,10 +108,10 @@ BEGIN
     EDITTEXT        IDC_editScale_B,202,247,43,13,ES_CENTER | ES_AUTOHSCROLL
     CONTROL         "Spin1",IDC_spneditScale_B,"msctls_updown32",UDS_AUTOBUDDY | UDS_ARROWKEYS,246,246,10,15
     LTEXT           "Edge",IDC_STATIC,263,250,18,9
-    CONTROL         "btnTriggerRising",IDC_btnTriggerRising,"Button",BS_OWNERDRAW | BS_BITMAP | BS_CENTER | BS_VCENTER | WS_TABSTOP,285,248,14,13
-    CONTROL         "btnTriggerFalling",IDC_btnTriggerFalling,"Button",BS_OWNERDRAW | BS_BITMAP | BS_CENTER | BS_VCENTER | WS_TABSTOP,300,248,14,13
-    PUSHBUTTON      "A",IDC_btnTrigger_A,316,247,15,13,BS_CENTER | BS_VCENTER
-    PUSHBUTTON      "B",IDC_btnTrigger_B,332,247,15,13,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "Ris.",IDC_btnTriggerRising,282,247,19,13,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "Fal.",IDC_btnTriggerFalling,302,247,19,13,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "A",IDC_btnTrigger_A,322,247,15,13,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "B",IDC_btnTrigger_B,338,247,15,13,BS_CENTER | BS_VCENTER
     LTEXT           "X position",IDC_STATIC,7,267,40,8
     EDITTEXT        IDC_editXPosition,51,265,24,13,ES_CENTER | ES_AUTOHSCROLL
     CONTROL         "Spin1",IDC_spneditXPosition,"msctls_updown32",UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_HORZ,76,266,14,12

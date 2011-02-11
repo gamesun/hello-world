@@ -120,6 +120,7 @@ BEGIN_MESSAGE_MAP(COscillDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &COscillDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_btnReverse, &COscillDlg::OnBnClickedbtnreverse)
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -140,8 +141,8 @@ BOOL COscillDlg::OnInitDialog()
 // 	m_ctrlbtnTriggerRising.SetIcon( hRisingIcon ); 
 // 	m_ctrlbtnTriggerFalling.SetIcon( hFallingIcon );
 
-	m_ctrlbmpbtnRising.AutoLoad( IDC_btnTriggerRising, this );
-	m_ctrlbmpbtnFalling.AutoLoad( IDC_btnTriggerFalling, this );
+//	m_ctrlbmpbtnRising.AutoLoad( IDC_btnTriggerRising, this );
+//	m_ctrlbmpbtnFalling.AutoLoad( IDC_btnTriggerFalling, this );
 
 #if OSCILL_DEBUG_TIME
 	g_fDbgCpuFrequency = (double)CPU_Frequency();
@@ -1336,3 +1337,14 @@ void COscillDlg::OnBtnComOpen()
 
 }
 
+
+void COscillDlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if ( nFlags & MK_LBUTTON )
+	{
+		TRACE( "Mouse:%d,%d\r\n", point.x, point.y );
+	}
+	
+	CDialog::OnMouseMove(nFlags, point);
+}

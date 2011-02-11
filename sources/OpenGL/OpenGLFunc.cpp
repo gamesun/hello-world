@@ -70,6 +70,11 @@ COpenGL::InitOpenGL( COscillDlg *pCWnd )
     CRect   rcDrawFrame;
     GetWindowRect( m_pCDrawWnd->m_hWnd, &rcDrawFrame );
 
+// 	TRACE( "%d,%d,%d,%d\r\n", rcDrawFrame.left,
+// 							  rcDrawFrame.top, 
+// 							  rcDrawFrame.right,
+// 							  rcDrawFrame.bottom );
+
     rcDrawFrame.SetRect( rcDrawFrame.left + 3,
                          rcDrawFrame.top + 3,
                          rcDrawFrame.right - 3,
@@ -255,3 +260,12 @@ COpenGL::DrawGrid(
 	glFinish();
 }
 
+//-----------------------------------------------------------------------------
+// Name: DrawRuler()
+// Desc: 
+//-----------------------------------------------------------------------------
+GLvoid 
+	COpenGL::DrawRuler( GLint x )
+{
+
+}
