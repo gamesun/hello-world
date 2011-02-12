@@ -149,11 +149,11 @@ UINT DspyThreadFunc( LPVOID lpParam )
 		if ( bClearFlag || ( 0 == *pm_nXCnt ) )
 		{
 			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-			//			TRACE( "%d\r\n", ( *pbClearFlag ? 1 : 0 ) );
 		}
 
 		g_COGL.DrawGrid( GLLEFT, GLRIGHT, GLBOTTOM, GLTOP );
-
+		g_COGL.DrawRuler( 135 );
+		
 		glTranslatef( *pm_fXPosition * GLWITDH / 12, 
 			*pm_fYPositionA * GLHEIGHT / 6 + 150.0f, 
 			0.1f );

@@ -257,14 +257,25 @@ COpenGL::DrawGrid(
     glEnd();
 	glDisable( GL_LINE_STIPPLE );
 
-	glFinish();
+//	glFinish();
 }
 
 //-----------------------------------------------------------------------------
 // Name: DrawRuler()
 // Desc: 
 //-----------------------------------------------------------------------------
-GLvoid COpenGL::DrawRuler( GLint x )
+GLvoid COpenGL::DrawRuler( GLfloat x )
 {
+	
+	glColor3ub( 255, 0, 0 );
 
+	glBegin( GL_LINES );
+	{
+		glVertex2f( x, GLTOP );
+		glVertex2f( x, GLBOTTOM );
+
+	}
+	glEnd();
+
+//	glFinish();
 }
