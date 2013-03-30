@@ -121,6 +121,7 @@ BEGIN_MESSAGE_MAP(COscillDlg, CDialog)
 	ON_BN_CLICKED(IDOK, &COscillDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_btnReverse, &COscillDlg::OnBnClickedbtnreverse)
 	ON_WM_MOUSEMOVE()
+	ON_BN_CLICKED(IDC_btnSave, &COscillDlg::OnBnClickedbtnsave)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1106,7 +1107,7 @@ void COscillDlg::OnBnClickedbtnreverse()
 	
 	if ( NULL != psSerialPortInfo )
 	{
-		for ( i = 1; i <= psSerialPortInfo->nNum; i++ )
+		for ( i = 0; i < psSerialPortInfo->nNum; i++ )
 		{
 			TRACE( "No.%d,%s\r\n", i, psSerialPortInfo->pszList[i] );
 		}
@@ -1347,4 +1348,497 @@ void COscillDlg::OnMouseMove(UINT nFlags, CPoint point)
 	}
 	
 	CDialog::OnMouseMove(nFlags, point);
+}
+
+
+void COscillDlg::OnBnClickedbtnsave()
+{
+	// TODO: 在此添加控件通知处理程序代码
+///////// for test ///////////
+/*
+	float f;
+	f = -1.0f;
+	TRACE( "f:%x\r\n", *(unsigned long *)&f>>31 );
+	TRACE( "sign:%d\r\n", ( (*(unsigned long *)&f)>>31 ) );
+
+	f = 1.0f;
+	TRACE( "sign:%d\r\n", (int)( ( (*(long *)&f)&0x80000000 )? 1 : 0 ) );
+
+	f = -0.0f;
+	TRACE( "sign:%d\r\n", (int)( ( (*(long *)&f)&0x80000000 )? 1 : 0 ) );
+*/
+
+//	double x;
+
+//	x = 12345678901.1234567;
+
+//	TRACE("%f = (%f) + (%f) \n",x,y,modf(x,&y));
+//	TRACE("%f = (%f) + (%f) \n",x,y,my_modf02(x,&y));
+
+//	TRACE("\n******************************************\n");
+
+//	TRACE("%f = (%f) + (%f) \n",-x,y,modf(-x,&y));
+//	TRACE("%f = (%f) + (%f) \n",-x,y,my_modf02(-x,&y));
+	
+	float x;
+	unsigned long l;
+	int i;
+	char tmp[80];
+	int precision;
+	precision = 6;
+	x = -0.5f;
+
+//	l = 0x42F6E979l;
+	l = *(unsigned long *)&x;
+	for ( i = 1; i<20; i++ )
+	{
+		x /= -2;
+		TRACE( "%f\n", x );
+		cfltcvtf( x, tmp, precision );
+		TRACE( "%s\n\n", tmp );
+	}
+
+//	cfltcvtf( -x, tmp, precision );
+	TRACE( "l:0x%08X\n", l );
+
+}
+
+////////////// test ///////////////
+#if 0
+
+double my_modf02(double x, double *y)
+{
+	double_t * z = (double_t *)&x;
+	double_t * iptr = (double_t *)y;
+
+	int j0;
+	unsigned int i;
+	j0 = z->exponent - 0x3ff;	/* exponent of x */
+	if(j0<20)
+	{/* integer part in high x */
+		if(j0<0)
+		{						/* |x|<1 */
+			*y = 0.0;
+			iptr->sign = z->sign;
+			return x;
+		}
+		else
+		{
+			if ( z->mantissah == 0 && z->mantissal == 0 )
+			{
+				*y = x;
+				return 0.0;
+			}
+			i = (0x000fffff)>>j0;
+			iptr->sign = z->sign;
+			iptr->exponent = z->exponent;
+			iptr->mantissah = z->mantissah&(~i);
+			iptr->mantissal = 0;
+			if ( x == *y )
+			{
+				x = 0.0;
+				z->sign = iptr->sign;
+				return x;
+			}
+			return x - *y;
+		}
+	}
+	else if (j0>51)
+	{							/* no fraction part */
+		*y = x;
+		if ( isnan(x) || isinf(x) )
+			return x;
+		x = 0.0;
+		z->sign = iptr->sign;
+		return x;
+	}
+	else
+	{							/* fraction part in low x */
+		i = ((unsigned)(0xffffffff))>>(j0-20);
+		iptr->sign = z->sign;
+		iptr->exponent = z->exponent;
+		iptr->mantissah = z->mantissah;
+		iptr->mantissal = z->mantissal&(~i);
+		if ( x == *y )
+		{
+			x = 0.0;
+			z->sign = iptr->sign;
+			return x;
+		}
+		return x - *y;
+	}
+}
+
+int isnan(double d)
+{
+	union
+	{
+		unsigned long long l;
+		double d;
+	} u;
+	u.d=d;
+	return (u.l==0x7FF8000000000000ll || 
+			u.l==0x7FF0000000000000ll || 
+			u.l==0xfff8000000000000ll);
+}
+
+int isinf(double d)
+{
+	union
+	{
+		unsigned long long l;
+		double d;
+	} u;
+	u.d=d;
+	return (u.l==0x7FF0000000000000ll?1:u.l==0xFFF0000000000000ll?-1:0);
+}
+
+char * fcvtbuf( double arg, int ndigits, int * decpt, int * sign, char * buf )
+{
+	return cvt( arg, ndigits, decpt, sign, buf, 0 );
+}
+
+char * cvt( double arg, int ndigits, int * decpt, int * sign, char * buf, int eflag )
+{
+	int r2;
+	double fi, fj;
+	char * p, * p1;
+
+	if ( ndigits < 0 ) ndigits = 0;
+	if ( ndigits >= CVTBUFSIZE - 1 ) ndigits = CVTBUFSIZE - 2;
+	r2 = 0;
+	* sign = 0;
+	p = & buf[0];
+	if ( arg < 0 )
+	{
+		* sign = 1;
+		arg = - arg;
+	}
+	arg = my_modf02( arg, & fi );
+	p1 = & buf[CVTBUFSIZE];
+
+	if ( fi != 0 ) 
+	{
+		p1 = & buf[CVTBUFSIZE];
+		while ( fi != 0 ) 
+		{
+			fj = my_modf02( fi / 10, & fi );
+			*-- p1 = ( int )(( fj + .03 ) * 10 ) + '0';
+			r2 ++;
+		}
+		while ( p1 < & buf[CVTBUFSIZE] ) * p ++ = * p1 ++;
+	} 
+	else if ( arg > 0 )
+	{
+		while (( fj = arg * 10 ) < 1 ) 
+		{
+			arg = fj;
+			r2 --;
+		}
+	}
+	p1 = & buf[ndigits];
+	if ( eflag == 0 ) p1 += r2;
+	* decpt = r2;
+	if ( p1 < & buf[0] ) 
+	{
+		buf[0] = '\0';
+		return buf;
+	}
+	while ( p <= p1 && p < & buf[CVTBUFSIZE] )
+	{
+		arg *= 10;
+		arg = my_modf02( arg, & fj );
+		* p ++ = ( int ) fj + '0';
+	}
+	if ( p1 >= & buf[CVTBUFSIZE] ) 
+	{
+		buf[CVTBUFSIZE - 1] = '\0';
+		return buf;
+	}
+	p = p1;
+	* p1 += 5;
+	while (* p1 > '9' ) 
+	{
+		* p1 = '0';
+		if ( p1 > buf )
+			++*-- p1;
+		else 
+		{
+			* p1 = '1';
+			(* decpt )++;
+			if ( eflag == 0 ) 
+			{
+				if ( p > buf ) * p = '0';
+				p ++;
+			}
+		}
+	}
+	* p = '\0';
+	return buf;
+}
+
+
+void cfltcvt( double value, char * buffer, char fmt, int precision )
+{
+	int decpt, sign, exp, pos;
+	char * digits = NULL;
+	char cvtbuf[CVTBUFSIZE + 1];
+
+	digits = fcvtbuf( value, precision, & decpt, & sign, cvtbuf );
+	if ( sign ) * buffer ++ = '-';
+	if (* digits )
+	{
+		if ( decpt <= 0 )
+		{
+			* buffer ++ = '0';
+			* buffer ++ = '.';
+			for ( pos = 0; pos < - decpt; pos ++) * buffer ++ = '0';
+			while (* digits ) * buffer ++ = * digits ++;
+		}
+		else
+		{
+			pos = 0;
+			while (* digits )
+			{
+				if ( pos ++ == decpt ) * buffer ++ = '.';
+				* buffer ++ = * digits ++;
+			}
+		}
+	}
+	else
+	{
+		* buffer ++ = '0';
+		if ( precision > 0 )
+		{
+			* buffer ++ = '.';
+			for ( pos = 0; pos < precision; pos ++) * buffer ++ = '0';
+		}
+	}
+	* buffer = '\0';
+}
+#endif
+//============================================================================//
+void putf( float f )
+{
+	char tmp[32];
+	cfltcvtf( f, tmp, 6 );
+}
+
+float my_modf02f(float x, float *y)
+{
+	float_t * z = (float_t *)&x;
+	float_t * iptr = (float_t *)y;
+
+	int j0;
+	unsigned int i;
+	j0 = z->exponent - 0x7f;/* 0x3ff; */	/* exponent of x */
+	if(j0<7) /* if(j0<20) */
+	{/* integer part in high x */
+		if(j0<0)
+		{						/* |x|<1 */
+			*y = 0.0;
+			iptr->sign = z->sign;
+			return x;
+		}
+		else
+		{
+			if ( z->mantissah == 0 && z->mantissal == 0 )
+			{
+				*y = x;
+				return 0.0;
+			}
+			i = (0x007f)>>j0; /* i = (0x000fffff)>>j0; */
+			iptr->sign = z->sign;
+			iptr->exponent = z->exponent;
+			iptr->mantissah = z->mantissah&(~i);
+			iptr->mantissal = 0;
+			if ( x == *y )
+			{
+				x = 0.0;
+				z->sign = iptr->sign;
+				return x;
+			}
+			return x - *y;
+		}
+	}
+	else if (j0>22) /* else if (j0>51) */
+	{							/* no fraction part */
+		*y = x;
+		if ( isnanf(x) || isinff(x) )
+		{
+			TRACE( "NaN\n" );
+			return x;
+		}
+		x = 0.0;
+		z->sign = iptr->sign;
+		return x;
+	}
+	else
+	{							/* fraction part in low x */
+		i = ((unsigned)(0xffff))>>(j0-7); /* i = ((unsigned)(0xffffffff))>>(j0-20); */
+		iptr->sign = z->sign;
+		iptr->exponent = z->exponent;
+		iptr->mantissah = z->mantissah;
+		iptr->mantissal = z->mantissal&(~i);
+		if ( x == *y )
+		{
+			x = 0.0;
+			z->sign = iptr->sign;
+			return x;
+		}
+		return x - *y;
+	}
+}
+
+int isnanf(float d)
+{
+	union
+	{
+		unsigned long l;
+		float d;
+	} u;
+	u.d=d;
+//	return (u.l==0x7FF8000000000000ll || 
+//			u.l==0x7FF0000000000000ll || 
+//			u.l==0xfff8000000000000ll);
+	return (u.l==0x7FC00000l || 
+			u.l==0x7F800000l || 
+			u.l==0xFFC00000l);
+}
+
+int isinff(float d)
+{
+	union
+	{
+		unsigned long l;
+		float d;
+	} u;
+	u.d=d;
+//	return (u.l==0x7FF0000000000000ll?1:u.l==0xFFF0000000000000ll?-1:0);
+	return (u.l==0x7F800000l?1:u.l==0xFF800000l?-1:0);
+}
+
+//char * fcvtbuff( float arg, int ndigits, int * decpt, int * sign, char * buf )
+//{
+//	return cvtf( arg, ndigits, decpt, sign, buf, 0 );
+//}
+
+char * cvtf( float arg, int ndigits, int * decpt, int * sign, char * buf, int eflag )
+{
+	int r2;
+	float fi, fj;
+	char * p, * p1;
+
+	if ( ndigits < 0 ) ndigits = 0;
+	if ( ndigits >= CVTBUFSIZE - 1 ) ndigits = CVTBUFSIZE - 2;
+	r2 = 0;
+	* sign = 0;
+	p = & buf[0];
+	if ( arg < 0 )
+	{
+		* sign = 1;
+		arg = - arg;
+	}
+	arg = my_modf02f( arg, & fi );
+	p1 = & buf[CVTBUFSIZE];
+
+	if ( fi != 0 ) 
+	{
+		p1 = & buf[CVTBUFSIZE];
+		while ( fi != 0 ) 
+		{
+			fj = my_modf02f( fi / 10, & fi );
+			*-- p1 = ( int )(( fj + .03 ) * 10 ) + '0';
+			r2 ++;
+		}
+		while ( p1 < & buf[CVTBUFSIZE] ) * p ++ = * p1 ++;
+	} 
+	else if ( arg > 0 )
+	{
+		while (( fj = arg * 10 ) < 1 ) 
+		{
+			arg = fj;
+			r2 --;
+		}
+	}
+	p1 = & buf[ndigits];
+	if ( eflag == 0 ) p1 += r2;
+	* decpt = r2;
+	if ( p1 < & buf[0] ) 
+	{
+		buf[0] = '\0';
+		return buf;
+	}
+	while ( p <= p1 && p < & buf[CVTBUFSIZE] )
+	{
+		arg *= 10;
+		arg = my_modf02f( arg, & fj );
+		* p ++ = ( int ) fj + '0';
+	}
+	if ( p1 >= & buf[CVTBUFSIZE] ) 
+	{
+		buf[CVTBUFSIZE - 1] = '\0';
+		return buf;
+	}
+	p = p1;
+	* p1 += 5;
+	while (* p1 > '9' ) 
+	{
+		* p1 = '0';
+		if ( p1 > buf )
+			++*-- p1;
+		else 
+		{
+			* p1 = '1';
+			(* decpt )++;
+			if ( eflag == 0 ) 
+			{
+				if ( p > buf ) * p = '0';
+				p ++;
+			}
+		}
+	}
+	* p = '\0';
+	return buf;
+}
+
+
+void cfltcvtf( float value, char * buffer, int precision )
+{
+	int decpt, sign, pos;
+	char * digits = NULL;
+	char cvtbuf[CVTBUFSIZE + 1];
+
+	//digits = fcvtbuff( value, precision, & decpt, & sign, cvtbuf );
+	digits = cvtf( value, precision, & decpt, & sign, cvtbuf, 0 );
+	if ( sign ) * buffer ++ = '-';
+	if (* digits )
+	{
+		if ( decpt <= 0 )
+		{
+			* buffer ++ = '0';
+			* buffer ++ = '.';
+			for ( pos = 0; pos < - decpt; pos ++) * buffer ++ = '0';
+			while (* digits ) * buffer ++ = * digits ++;
+		}
+		else
+		{
+			pos = 0;
+			while (* digits )
+			{
+				if ( pos ++ == decpt ) * buffer ++ = '.';
+				* buffer ++ = * digits ++;
+			}
+		}
+	}
+	else
+	{
+		* buffer ++ = '0';
+		if ( precision > 0 )
+		{
+			* buffer ++ = '.';
+			for ( pos = 0; pos < precision; pos ++) * buffer ++ = '0';
+		}
+	}
+	* buffer = '\0';
 }

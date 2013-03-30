@@ -158,6 +158,7 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedbtnreverse();
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnBnClickedbtnsave();
 };
 
 // struct threadInfo
@@ -172,9 +173,49 @@ struct SMeasPara
 };
 
 //extern SMeasPara		g_sMeasPara;
+///////////// test ///////////////
+typedef struct
+{
+	unsigned int mantissal:32;
+	unsigned int mantissah:20;
+	unsigned int exponent:11;
+	unsigned int sign:1;
+}double_t;
 
+//typedef struct
+//{
+//	unsigned int mantissal:16;
+//	unsigned int mantissah:7;
+//	unsigned int exponent:8;
+//	unsigned int sign:1;
+//}float_t;
 
+typedef struct
+{
+	unsigned int sign:1;
+	unsigned int exponent:8;
+	unsigned int mantissah:7;
+	unsigned int mantissal:16;
+}float_t;
 
+#define CVTBUFSIZE  16
+
+#if 0
+int isnan(double d);
+int isinf(double d);
+double my_modf02(double x, double *y);
+char * cvt( double arg, int ndigits, int * decpt, int * sign, char * buf, int eflag );
+char * fcvtbuf( double arg, int ndigits, int * decpt, int * sign, char * buf );
+void cfltcvt( double value, char * buffer, char fmt, int precision );
+#endif
+
+void putf( float f );
+float my_modf02f(float x, float *y);
+int isnanf(float d);
+int isinff(float d);
+char * cvtf( float arg, int ndigits, int * decpt, int * sign, char * buf, int eflag );
+//char * fcvtbuff( float arg, int ndigits, int * decpt, int * sign, char * buf );
+void cfltcvtf( float value, char * buffer, int precision );
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

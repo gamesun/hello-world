@@ -58,7 +58,7 @@
 	psSerialPortInfo = new SERIALPORTINFO;
 //	memset( psSerialPortInfo, 0, sizeof( SERIALPORTINFO ) );
 	psSerialPortInfo->nNum = 0;
-	i = 1;
+	i = 0;
 	do
 	{
 		Status = RegEnumValue(hKey, dwIndex++, Name, &dwName, NULL, &Type,
