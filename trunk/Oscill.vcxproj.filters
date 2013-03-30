@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{aa3a9138-7a46-42b7-91b8-47ba08f248b9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ec56483f-9ea4-4426-bdd4-c0ff4c1e752b}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{eb82e527-26d3-4457-bcbf-43f1241328d4}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Thread">
+      <UniqueIdentifier>{d186c38b-dab5-4848-9b4a-6eb02ca9155c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialog">
+      <UniqueIdentifier>{926b6006-54d0-4b3f-9d2d-8a1280098004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SerialPort">
+      <UniqueIdentifier>{15e7088c-46c7-4b39-9dac-34a9baf17d1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL">
+      <UniqueIdentifier>{12577c88-e59d-4d5f-957f-22bc6df1462f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL">
+      <UniqueIdentifier>{94a69be1-2d68-44f8-9400-e946cdf93c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SerialPort">
+      <UniqueIdentifier>{aad71614-964a-4760-b2d3-95de1d9e1644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Thread">
+      <UniqueIdentifier>{a3e25030-709e-45d5-9377-98aa83639a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{91fbebd6-dd94-4324-87bf-0ba2fc0d51a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dialog">
+      <UniqueIdentifier>{d355778d-7417-42b3-8ddc-e8eeb8b8ef80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data">
+      <UniqueIdentifier>{1fc3f279-7814-4fdf-9022-8a0e88b387da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data">
+      <UniqueIdentifier>{f55838a8-e8dc-40e1-8300-945b06173d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{27155efa-2469-4209-af41-bc0c54295dc2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\Data\Queue.cpp">
+      <Filter>Source Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Dialog\ComSetting.cpp">
+      <Filter>Source Files\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Dialog\Oscill.cpp">
+      <Filter>Source Files\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Dialog\StdAfx.cpp">
+      <Filter>Source Files\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\OpenGL\OpenGLFunc.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SerialPort\EnumSerialPort.cpp">
+      <Filter>Source Files\SerialPort</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SerialPort\mscomm.cpp">
+      <Filter>Source Files\SerialPort</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SerialPort\SerialPort.cpp">
+      <Filter>Source Files\SerialPort</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Thread\DspyThread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Thread\RecvThread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Dialog\Oscilldlg.cpp">
+      <Filter>Source Files\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\common\Debug.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Oscill.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\common\Const.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Dialog\ComSetting.h">
+      <Filter>Header Files\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Dialog\Oscill.h">
+      <Filter>Header Files\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Dialog\Resource.h">
+      <Filter>Header Files\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Dialog\StdAfx.h">
+      <Filter>Header Files\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\OpenGL\OpenGLFunc.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\SerialPort\EnumSerialPort.h">
+      <Filter>Header Files\SerialPort</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\SerialPort\mscomm.h">
+      <Filter>Header Files\SerialPort</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Thread\DspyThread.h">
+      <Filter>Header Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Thread\RecvThread.h">
+      <Filter>Header Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Data\Queue.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Dialog\Oscilldlg.h">
+      <Filter>Header Files\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\SerialPort\serialport.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\common\Global.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\common\Debug.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\common\resource.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="XPStyle.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\btnFallingD.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnFallingF.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnFallingU.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnFallingX.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnRisingD.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnRisingF.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnRisingU.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\btnRisingX.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\Oscill.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\Oscill.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>
